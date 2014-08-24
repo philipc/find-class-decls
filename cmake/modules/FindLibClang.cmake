@@ -8,7 +8,12 @@ execute_process(
   COMMAND llvm-config --includedir
   OUTPUT_VARIABLE LibClang_INCLUDE_DIR)
 
-find_library(LibClang_LIBRARY NAMES clang)
+execute_process(
+  COMMAND llvm-config --libdir
+  OUTPUT_VARIABLE LibClang_LIB_DIR
+  OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+find_library(LibClang_LIBRARY NAMES clang PATHS ${LibClang_LIB_DIR})
 
 set(LibClang_LIBRARIES ${LibClang_LIBRARY})
 set(LibClang_INCLUDE_DIRS ${LibClang_INCLUDE_DIR})
