@@ -5,15 +5,15 @@ set(CMAKE_MODULE_PATH
   "${CMAKE_SOURCE_DIR}/cmake/modules"
 )
 
-find_package(LibClang REQUIRED)
+find_package(LibClangTooling REQUIRED)
 
-add_definitions(${LibClang_DEFINITIONS})
+add_definitions(${LibClangTooling_DEFINITIONS})
 
 include_directories(
-  ${LibClang_INCLUDE_DIRS}
+  ${LibClangTooling_INCLUDE_DIRS}
 )
 
 add_executable(find-class-decls FindClassDecls.cpp)
 target_link_libraries(find-class-decls
-  ${LibClang_LIBRARIES}
+  ${LibClangTooling_LIBRARIES}
 )
