@@ -42,9 +42,9 @@ private:
 
 class FindNamedClassAction : public clang::ASTFrontendAction {
 public:
-  virtual clang::ASTConsumer *CreateASTConsumer(
+  virtual std::unique_ptr<clang::ASTConsumer> CreateASTConsumer(
     clang::CompilerInstance &Compiler, llvm::StringRef InFile) {
-    return new FindNamedClassConsumer(&Compiler.getASTContext());
+    return std::unique_ptr<clang::ASTConsumer>(new FindNamedClassConsumer(&Compiler.getASTContext()));
   }
 };
 
